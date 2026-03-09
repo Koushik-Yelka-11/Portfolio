@@ -16,28 +16,69 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f0f2f8;
+      background: #ffffff;
       min-height: 100vh;
       overflow-x: hidden;
-      display: block;
     }
 
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a1a2e;
+      opacity: 0.55;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: #252525;
+    }
+
+    .nav-link.active {
+      color: #1f1f1f;
+      opacity: 1;
+      font-weight: 600;
+    }
+
+    /* ===== CARD / PAGE ===== */
     .card {
       background: #fff;
-      border-radius: 0;
-      padding: 120px 12vw 60px;
       width: 100%;
       min-height: 100vh;
-      box-shadow: none;
+      padding: 110px 8vw 60px;
       display: grid;
-      grid-template-columns: 600px 300px;
-      justify-content: center;
-      gap: 80px;
+      grid-template-columns: 1fr 280px;
+      gap: 64px;
       align-items: start;
     }
 
+    /* ===== LEFT ===== */
     .left h1 {
-      font-size: 4rem;
+      font-size: clamp(2.2rem, 5vw, 4rem);
       font-weight: 700;
       color: #111;
       margin-bottom: 10px;
@@ -55,6 +96,7 @@
     .dot {
       width: 7px;
       height: 7px;
+      flex-shrink: 0;
       border-radius: 50%;
       background: #4ade80;
       box-shadow: 0 0 6px #4ade80;
@@ -67,53 +109,13 @@
     }
 
     .left p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #555;
-      line-height: 1.8;
+      line-height: 1.85;
       margin-bottom: 24px;
     }
-        /* ===== NAVIGATION BAR ===== */
 
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 0;
-      background: transparent;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #1a1a2e;
-      opacity: 0.6;
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      opacity: 1;
-      color: #252525;
-      transform: scale(1.1);
-    }
-
-    .nav-link.active {
-      color: #1f1f1f;
-      opacity: 1;
-      text-shadow: 0 0 8px rgba(33, 33, 33, 0.4);
-    }
-
+    /* ===== ACCORDION ===== */
     .accordion {
       border-radius: 14px;
       overflow: hidden;
@@ -138,9 +140,7 @@
       transition: background 0.2s;
     }
 
-    .acc-header:hover {
-      background: #f2f5ff;
-    }
+    .acc-header:hover { background: #f2f5ff; }
 
     .acc-arrow {
       font-size: 0.65rem;
@@ -150,9 +150,7 @@
       transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
     }
 
-    .accordion.open .acc-arrow {
-      transform: rotate(90deg);
-    }
+    .accordion.open .acc-arrow { transform: rotate(90deg); }
 
     .acc-title {
       font-size: 0.88rem;
@@ -166,10 +164,9 @@
       transition: max-height 0.45s cubic-bezier(0.16,1,0.3,1);
     }
 
-    .acc-inner {
-      padding: 2px 18px 16px;
-    }
+    .acc-inner { padding: 2px 18px 16px; }
 
+    /* ===== TIMELINE ===== */
     .timeline {
       position: relative;
       padding-left: 16px;
@@ -194,14 +191,8 @@
       transition: opacity 0.3s, transform 0.3s;
     }
 
-    .tl-item.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .tl-item:last-child {
-      padding-bottom: 0;
-    }
+    .tl-item.show { opacity: 1; transform: translateX(0); }
+    .tl-item:last-child { padding-bottom: 0; }
 
     .tl-item::before {
       content: '';
@@ -221,16 +212,8 @@
       box-shadow: 0 0 8px rgba(26,115,232,0.4);
     }
 
-    .tl-name {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #222;
-    }
-
-    .tl-place {
-      font-size: 0.7rem;
-      color: #999;
-    }
+    .tl-name  { font-size: 0.8rem;  font-weight: 600; color: #222; }
+    .tl-place { font-size: 0.7rem;  color: #999; }
 
     .tl-year {
       display: inline-block;
@@ -243,12 +226,9 @@
       font-weight: 500;
     }
 
-    .exp-empty {
-      font-size: 0.78rem;
-      color: #bbb;
-      padding: 2px 0;
-    }
+    .exp-empty { font-size: 0.78rem; color: #bbb; padding: 2px 0; }
 
+    /* ===== PHOTO ===== */
     .photo-wrap {
       border-radius: 20px;
       overflow: hidden;
@@ -256,6 +236,7 @@
       aspect-ratio: 3/4;
       box-shadow: 0 16px 40px rgba(26,115,232,0.15);
       position: relative;
+      width: 100%;
     }
 
     .photo-wrap img {
@@ -277,132 +258,152 @@
       padding: 8px 12px;
     }
 
-    .badge-name {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: #111;
+    .badge-name { font-size: 0.76rem; font-weight: 700; color: #111; }
+    .badge-role { font-size: 0.64rem; color: #444; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 700px) {
+
+      .navbar { padding: 14px 0; }
+
+      .nav-links { gap: 18px; }
+
+      .nav-links a { font-size: 0.7rem; letter-spacing: 0.06em; }
+
+      .card {
+        grid-template-columns: 1fr;
+        padding: 90px 20px 48px;
+        gap: 32px;
+      }
+
+      /* Photo sits on top on mobile */
+      .photo-wrap {
+        order: -1;
+        max-width: 220px;
+        margin: 0 auto;
+        aspect-ratio: 3/4;
+      }
+
+      .left h1 { font-size: 2.4rem; }
+
+      .left p { font-size: 0.9rem; }
     }
 
-    .badge-role {
-      font-size: 0.64rem;
-      color: #444444;
+    /* ===== TABLET ===== */
+    @media (min-width: 701px) and (max-width: 960px) {
+      .card {
+        grid-template-columns: 1fr 220px;
+        gap: 40px;
+        padding: 100px 6vw 60px;
+      }
     }
   </style>
 </head>
 
 <body>
+
 <header class="navbar">
-    <nav class="nav-links">
-      <!-- <a href="index.html" class="nav-link">Home</a> -->
-      <a href="about.html" class="nav-link active">About</a>
-      <a href="contact.html" class="nav-link ">Contact</a>
-      <a href="skills.html" class="nav-link">Skills</a>
-      <a href="project.html" class="nav-link">Project</a>
-      <a href="assets/resume.pdf" class="nav-link">Resume</a>
-    </nav>
-  </header>
+  <nav class="nav-links">
+    <a href="about.html"        class="nav-link active">About</a>
+    <a href="contact.html"      class="nav-link">Contact</a>
+    <a href="skills.html"       class="nav-link">Skills</a>
+    <a href="project.html"      class="nav-link">Project</a>
+    <a href="assets/resume.pdf" class="nav-link">Resume</a>
+  </nav>
+</header>
 
-  <div class="card">
-    <div class="left">
-      <h1>Hello! 👋</h1>
+<div class="card">
 
-      <div class="status">
-        <span class="dot"></span>
-        Open to internships &amp; collaborations
-      </div>
+  <div class="left">
+    <h1>Hello! 👋</h1>
 
-      <p>
-        I'm <strong>Koushik Yelka</strong>, a 2nd year B.Tech student at IARE, passionate about
-        Data Science and innovation. I love discovering new tools, experimenting with technologies,
-        and understanding how things work behind the scenes. My curiosity drives me to explore
-        the unknown and build solutions that make a difference.
-      </p>
-
-      <div class="accordion" id="edu">
-        <div class="acc-header" onclick="toggle('edu')">
-          <span class="acc-arrow">▶</span>
-          <span class="acc-title">Education</span>
-        </div>
-
-        <div class="acc-body" id="edu-body">
-          <div class="acc-inner">
-            <div class="timeline">
-
-              <div class="tl-item">
-                <div class="tl-name">Middle School</div>
-                <div class="tl-place">JNV Nalgonda, Telangana, India</div>
-                <div class="tl-year">2017 – 2019</div>
-              </div>
-
-              <div class="tl-item">
-                <div class="tl-name">Secondary School</div>
-                <div class="tl-place">JNV Nalgonda, Telangana, India</div>
-                <div class="tl-year">2019 – 2022</div>
-              </div>
-
-              <div class="tl-item">
-                <div class="tl-name">Senior Secondary School</div>
-                <div class="tl-place">JNV Nalgonda, Telangana, India</div>
-                <div class="tl-year">2022 – 2024</div>
-              </div>
-
-              <div class="tl-item">
-                <div class="tl-name">Undergraduate — B.Tech</div>
-                <div class="tl-place">IARE Dundigal, Telangana, India</div>
-                <div class="tl-year">2024 – 2028 · Present</div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion" id="exp">
-        <div class="acc-header" onclick="toggle('exp')">
-          <span class="acc-arrow">▶</span>
-          <span class="acc-title">Experience</span>
-        </div>
-
-        <div class="acc-body" id="exp-body">
-          <div class="acc-inner">
-            <div class="exp-empty">
-              🚀 Exciting experiences coming soon!
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div class="status">
+      <span class="dot"></span>
+      Open to internships &amp; collaborations
     </div>
 
-    <div class="photo-wrap">
-      <img src="/assets/koushik/Koushik4.jpeg" alt="Koushik Yelka" onerror="this.style.display='none'">
+    <p>
+      I'm <strong>Koushik Yelka</strong>, a 2nd year B.Tech student at IARE, passionate about
+      Data Science and innovation. I love discovering new tools, experimenting with technologies,
+      and understanding how things work behind the scenes. My curiosity drives me to explore
+      the unknown and build solutions that make a difference.
+    </p>
 
-      <div class="photo-badge">
-        <div class="badge-name">Koushik Goud</div>
-        <div class="badge-role">B.Tech · IARE · 2nd Year</div>
+    <div class="accordion" id="edu">
+      <div class="acc-header" onclick="toggle('edu')">
+        <span class="acc-arrow">▶</span>
+        <span class="acc-title">Education</span>
+      </div>
+      <div class="acc-body" id="edu-body">
+        <div class="acc-inner">
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-name">Middle School</div>
+              <div class="tl-place">JNV Nalgonda, Telangana, India</div>
+              <div class="tl-year">2017 – 2019</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-name">Secondary School</div>
+              <div class="tl-place">JNV Nalgonda, Telangana, India</div>
+              <div class="tl-year">2019 – 2022</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-name">Senior Secondary School</div>
+              <div class="tl-place">JNV Nalgonda, Telangana, India</div>
+              <div class="tl-year">2022 – 2024</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-name">Undergraduate — B.Tech</div>
+              <div class="tl-place">IARE Dundigal, Telangana, India</div>
+              <div class="tl-year">2024 – 2028 · Present</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="exp">
+      <div class="acc-header" onclick="toggle('exp')">
+        <span class="acc-arrow">▶</span>
+        <span class="acc-title">Experience</span>
+      </div>
+      <div class="acc-body" id="exp-body">
+        <div class="acc-inner">
+          <div class="exp-empty">🚀 Exciting experiences coming soon!</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <script>
-    function toggle(id) {
-      const acc = document.getElementById(id);
-      const body = document.getElementById(id + '-body');
-      const isOpen = acc.classList.contains('open');
+  <div class="photo-wrap">
+    <img src="/assets/koushik/Koushik4.jpeg" alt="Koushik Yelka" onerror="this.style.display='none'">
+    <div class="photo-badge">
+      <div class="badge-name">Koushik Goud</div>
+      <div class="badge-role">B.Tech · IARE · 2nd Year</div>
+    </div>
+  </div>
 
-      document.querySelectorAll('.accordion').forEach(a => a.classList.remove('open'));
-      document.querySelectorAll('.acc-body').forEach(b => b.style.maxHeight = '0');
-      document.querySelectorAll('.tl-item').forEach(i => i.classList.remove('show'));
+</div>
 
-      if (!isOpen) {
-        acc.classList.add('open');
-        body.style.maxHeight = '400px';
+<script>
+  function toggle(id) {
+    const acc  = document.getElementById(id);
+    const body = document.getElementById(id + '-body');
+    const isOpen = acc.classList.contains('open');
 
-        body.querySelectorAll('.tl-item').forEach((item, i) => {
-          setTimeout(() => item.classList.add('show'), i * 80 + 50);
-        });
-      }
+    document.querySelectorAll('.accordion').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.acc-body').forEach(b => b.style.maxHeight = '0');
+    document.querySelectorAll('.tl-item').forEach(i => i.classList.remove('show'));
+
+    if (!isOpen) {
+      acc.classList.add('open');
+      body.style.maxHeight = '500px';
+      body.querySelectorAll('.tl-item').forEach((item, i) => {
+        setTimeout(() => item.classList.add('show'), i * 80 + 50);
+      });
     }
-  </script>
+  }
+</script>
+
 </body>
 </html>

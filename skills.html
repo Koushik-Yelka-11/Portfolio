@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Skills</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    background: linear-gradient(135deg, #ebedf3 0%, #ffffff 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ebedf3 0%, #ffffff 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
 
-
-    /* ===== NAVIGATION BAR ===== */
-
-  .navbar {
+      /* ===== NAVBAR ===== */
+      .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 0;
-  background: transparent;
+  padding: 18px 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -35,260 +34,464 @@
 
 .nav-links {
   display: flex;
-  gap: 40px;
+  gap: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-links a {
   text-decoration: none;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #1a1a2e;
-  opacity: 0.6;
+  opacity: 0.55;
   transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
   opacity: 1;
   color: #252525;
-  transform: scale(1.1);
 }
+
 .nav-link.active {
   color: #1f1f1f;
   opacity: 1;
-  text-shadow: 0 0 8px rgba(33, 33, 33, 0.4);
+  font-weight: 600;
 }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 18px 16px;
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+      }
 
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
+      .nav-links a {
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #1a1a2e;
+        opacity: 0.55;
+        transition: all 0.3s ease;
+      }
 
-  /* ── SCENE ── */
-  .scene {
-    position: relative;
-    width: 700px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+      .nav-links a:hover { opacity: 1; color: #252525; }
 
+      .nav-link.active {
+        color: #1f1f1f;
+        opacity: 1;
+        font-weight: 600;
+      }
 
+      /* ===== DESKTOP: ORBIT VIEW ===== */
+      .orbit-view {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
 
-  /* ── CENTER AVATAR ── */
-  .avatar-wrap {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    width: 930px;
-    height: 930px;
-    
-  }
-  .avatar-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-  }
-  /* Fallback face shown if image missing */
-  .avatar-fallback {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    background: linear-gradient(145deg, #c8cde0, #a0aac8);
-  }
+      .scene {
+        position: relative;
+        width: 700px;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-  @keyframes pulse {
-    0%,100% { box-shadow: 0 20px 60px rgba(26,26,46,0.16), 0 0 0 10px rgba(26,26,46,0.05); }
-    50%      { box-shadow: 0 28px 80px rgba(26,26,46,0.22), 0 0 0 18px rgba(26,26,46,0.03); }
-  }
+      .avatar-wrap {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        width: 930px;
+        height: 930px;
+      }
 
-  /* ── ICON ITEMS ── */
-  .icon-item {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* JS will override transform per frame via animation */
-    width: 77px;
-    height: 77px;
-    margin-left: -28px;
-    margin-top: -28px;
-    border-radius: 16px;
-    background:none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-    cursor: pointer;
-    transition: box-shadow 0.25s;
-  }
-  .icon-item:hover {
-    box-shadow: 0 14px 36px rgba(0,0,0,0.68) !important;
-    z-index: 40 !important;
-  }
-  .icon-item img {
-    width: 77px;
-    height: 77px;
-    object-fit: fill;
-    border-radius: 14px;
-    pointer-events: none;
-    display: block;
-  }
+      .avatar-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
 
-  /* Tooltip on hover */
-  .icon-item::after {
-    content: attr(data-label);
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
-    background: #1a1a2e;
-    color: #fff;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.6s, transform 0.6s;
-    letter-spacing: 0.04em;
-    z-index: 99;
-  }
-  .icon-item:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+      .avatar-fallback {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        background: linear-gradient(145deg, #c8cde0, #a0aac8);
+      }
+
+      .icon-item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 77px;
+        height: 77px;
+        margin-left: -28px;
+        margin-top: -28px;
+        border-radius: 16px;
+        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        cursor: pointer;
+        transition: box-shadow 0.25s;
+      }
+
+      .icon-item:hover {
+        box-shadow: 0 14px 36px rgba(0,0,0,0.68) !important;
+        z-index: 40 !important;
+      }
+
+      .icon-item img {
+        width: 77px;
+        height: 77px;
+        object-fit: fill;
+        border-radius: 14px;
+        pointer-events: none;
+        display: block;
+      }
+
+      .icon-item::after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        background: #1a1a2e;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 6px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s, transform 0.3s;
+        letter-spacing: 0.04em;
+        z-index: 99;
+      }
+
+      .icon-item:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ===== MOBILE: GRID VIEW ===== */
+      .mobile-view {
+        display: none;
+        padding: 80px 20px 40px;
+      }
+
+      .mobile-header {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .mobile-header h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 6px;
+      }
+
+      .mobile-header p {
+        font-size: 0.78rem;
+        color: #aaa;
+      }
+
+      .skills-section {
+        margin-bottom: 28px;
+      }
+
+      .section-label {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #1A73E8;
+        margin-bottom: 12px;
+        padding-left: 4px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .skill-tile {
+        background: #fff;
+        border: 1.5px solid #e4e7f0;
+        border-radius: 14px;
+        padding: 12px 8px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        cursor: default;
+      }
+
+      .skill-tile:active {
+        transform: scale(0.95);
+        box-shadow: 0 4px 16px rgba(26,115,232,0.15);
+        border-color: #1A73E8;
+      }
+
+      .skill-tile img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .skill-tile-fallback {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #e8f0fe, #d2e3fc);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+        font-weight: 700;
+        color: #1A73E8;
+        letter-spacing: 0.02em;
+      }
+
+      .skill-name {
+        font-size: 0.6rem;
+        font-weight: 500;
+        color: #444;
+        text-align: center;
+        line-height: 1.3;
+      }
+
+      /* ===== RESPONSIVE SWITCH ===== */
+      @media (max-width: 768px) {
+        .orbit-view { display: none; }
+        .mobile-view { display: block; }
+
+        .nav-links { gap: 14px; }
+        .nav-links a { font-size: 0.68rem; letter-spacing: 0.06em; }
+
+        .skills-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+      }
+
+      @media (max-width: 400px) {
+        .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      }
 
     </style>
   </head>
 
   <body>
+
     <header class="navbar">
-      <!-- Navigation Buttons -->
       <nav class="nav-links">
-        <!-- <a href="index.html" class="nav-link">Home</a> -->
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link ">Contact</a>
-        <a href="skills.html" class="nav-link active">Skills</a>
-        <a href="project.html" class="nav-link">Project</a>
+        <a href="about.html"        class="nav-link">About</a>
+        <a href="contact.html"      class="nav-link">Contact</a>
+        <a href="skills.html"       class="nav-link active">Skills</a>
+        <a href="project.html"      class="nav-link">Project</a>
         <a href="assets/resume.pdf" class="nav-link">Resume</a>
       </nav>
     </header>
-    
-    <div class="scene" id="scene">
-      <a href="skills.html" class="nav-btn nav-skills">Skills</a>
 
-      <div class="avatar-wrap" id="avatarWrap"> <img src="/assets/koushik/coding1.png" alt="Me" id="avatarImg" /></div>
+    <!-- ===== DESKTOP ORBIT ===== -->
+    <div class="orbit-view">
+      <div class="scene" id="scene">
 
-      <!-- Frontend Development -->
-      <div class="icon-item" data-label="HTML5">     <img src="/assets/icons/html.png" alt="HTML5"></div>
-      <div class="icon-item" data-label="CSS3">      <img src="/assets/icons/css.png" alt="CSS3"></div>
-      <div class="icon-item" data-label="JavaScript"><img src="/assets/icons/javascript.png" alt="JavaScript"></div>
-      <div class="icon-item" data-label="TypeScript"><img src="/assets/icons/typescript.png" alt="TypeScript"></div>
-      <!-- Frontend Libraries & Tools -->
-      <div class="icon-item" data-label="Tailwind">  <img src="/assets/icons/tailwind.png" alt="Tailwind"></div>
-      <div class="icon-item" data-label="React">     <img src="/assets/icons/react.png" alt="React"></div>
-      <div class="icon-item" data-label="Vite">      <img src="/assets/icons/vite.png" alt="Vite"></div>
-      <!-- Mobile & Cross-Platform Development -->
-      <div class="icon-item" data-label="Flutter">   <img src="/assets/icons/flutter.png" alt="Flutter"></div>
-      <!-- Backend Development -->
-      <div class="icon-item" data-label="Node.js">   <img src="/assets/icons/nodejs.png" alt="Node.js"></div>
-      <div class="icon-item" data-label="Python">    <img src="/assets/icons/python.png" alt="Python"></div>
-      <div class="icon-item" data-label="Java">      <img src="/assets/icons/java.png" alt="Java"></div>
-      <div class="icon-item" data-label="Flask">     <img src="/assets/icons/flask.png" alt="Flask"></div>
-      <!-- Databases -->
-      <div class="icon-item" data-label="MySQL">     <img src="/assets/icons/mysql.png" alt="MySQL"></div>
-      <div class="icon-item" data-label="PostgreSQL"><img src="/assets/icons/postgresql.png" alt="PostgreSQL"></div>
-      <div class="icon-item" data-label="MongoDB">   <img src="/assets/icons/mongodb.png" alt="MongoDB"></div>
-      <!-- Development Tools & IDEs -->
-      <div class="icon-item" data-label="VS Code">   <img src="/assets/icons/vscode.png" alt="VS Code"></div>
-      <div class="icon-item" data-label="Eclipse">   <img src="/assets/icons/eclipse.png" alt="Eclipse"></div>
-      <div class="icon-item" data-label="npm">       <img src="/assets/icons/npm.png" alt="npm"></div>
-      <div class="icon-item" data-label="PyCharm">   <img src="/assets/icons/pycharm.png" alt="PyCharm"></div>
-      <!-- Version Control -->
-      <div class="icon-item" data-label="GitHub">    <img src="/assets/icons/github.png" alt="GitHub"></div>
-      <!-- Documentation -->
-      <div class="icon-item" data-label="LaTeX">     <img src="/assets/icons/latex.png" alt="LaTeX"></div>
-      <!-- Operating Systems -->
-      <div class="icon-item" data-label="Kali Linux"><img src="/assets/icons/kali.png" alt="Kali Linux"></div>
-      <div class="icon-item" data-label="Windows">   <img src="/assets/icons/windows.png" alt="Windows"></div>
-      <div class="icon-item" data-label="macOS">     <img src="/assets/icons/mac.png" alt="macOS"></div>
+        <div class="avatar-wrap" id="avatarWrap">
+          <img src="/assets/koushik/coding1.png" alt="Me" id="avatarImg" />
+        </div>
+
+        <!-- Frontend -->
+        <div class="icon-item" data-label="HTML5">     <img src="/assets/icons/html.png"       alt="HTML5"></div>
+        <div class="icon-item" data-label="CSS3">      <img src="/assets/icons/css.png"        alt="CSS3"></div>
+        <div class="icon-item" data-label="JavaScript"><img src="/assets/icons/javascript.png" alt="JavaScript"></div>
+        <div class="icon-item" data-label="TypeScript"><img src="/assets/icons/typescript.png" alt="TypeScript"></div>
+        <div class="icon-item" data-label="Tailwind">  <img src="/assets/icons/tailwind.png"   alt="Tailwind"></div>
+        <div class="icon-item" data-label="React">     <img src="/assets/icons/react.png"      alt="React"></div>
+        <div class="icon-item" data-label="Vite">      <img src="/assets/icons/vite.png"       alt="Vite"></div>
+        <!-- Mobile -->
+        <div class="icon-item" data-label="Flutter">   <img src="/assets/icons/flutter.png"    alt="Flutter"></div>
+        <!-- Backend -->
+        <div class="icon-item" data-label="Node.js">   <img src="/assets/icons/nodejs.png"     alt="Node.js"></div>
+        <div class="icon-item" data-label="Python">    <img src="/assets/icons/python.png"     alt="Python"></div>
+        <div class="icon-item" data-label="Java">      <img src="/assets/icons/java.png"       alt="Java"></div>
+        <div class="icon-item" data-label="Flask">     <img src="/assets/icons/flask.png"      alt="Flask"></div>
+        <!-- Databases -->
+        <div class="icon-item" data-label="MySQL">     <img src="/assets/icons/mysql.png"      alt="MySQL"></div>
+        <div class="icon-item" data-label="PostgreSQL"><img src="/assets/icons/postgresql.png" alt="PostgreSQL"></div>
+        <div class="icon-item" data-label="MongoDB">   <img src="/assets/icons/mongodb.png"    alt="MongoDB"></div>
+        <!-- Tools -->
+        <div class="icon-item" data-label="VS Code">   <img src="/assets/icons/vscode.png"     alt="VS Code"></div>
+        <div class="icon-item" data-label="Eclipse">   <img src="/assets/icons/eclipse.png"    alt="Eclipse"></div>
+        <div class="icon-item" data-label="npm">       <img src="/assets/icons/npm.png"        alt="npm"></div>
+        <div class="icon-item" data-label="PyCharm">   <img src="/assets/icons/pycharm.png"    alt="PyCharm"></div>
+        <!-- Version Control -->
+        <div class="icon-item" data-label="GitHub">    <img src="/assets/icons/github.png"     alt="GitHub"></div>
+        <!-- Docs -->
+        <div class="icon-item" data-label="LaTeX">     <img src="/assets/icons/latex.png"      alt="LaTeX"></div>
+        <!-- OS -->
+        <div class="icon-item" data-label="Kali Linux"><img src="/assets/icons/kali.png"       alt="Kali Linux"></div>
+        <div class="icon-item" data-label="Windows">   <img src="/assets/icons/windows.png"    alt="Windows"></div>
+        <div class="icon-item" data-label="macOS">     <img src="/assets/icons/mac.png"        alt="macOS"></div>
+
+      </div>
     </div>
+
+    <!-- ===== MOBILE GRID ===== -->
+    <div class="mobile-view">
+
+      <div class="mobile-header">
+        <h1>My Skills</h1>
+        <p>Technologies &amp; tools I work with</p>
+      </div>
+
+      <div class="skills-section">
+        <div class="section-label">Frontend</div>
+        <div class="skills-grid">
+          <div class="skill-tile"><img src="/assets/icons/html.png"       alt="HTML5"      onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>HT</div>'"><span class="skill-name">HTML5</span></div>
+          <div class="skill-tile"><img src="/assets/icons/css.png"        alt="CSS3"       onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>CS</div>'"><span class="skill-name">CSS3</span></div>
+          <div class="skill-tile"><img src="/assets/icons/javascript.png" alt="JavaScript" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>JS</div>'"><span class="skill-name">JavaScript</span></div>
+          <div class="skill-tile"><img src="/assets/icons/typescript.png" alt="TypeScript" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>TS</div>'"><span class="skill-name">TypeScript</span></div>
+          <div class="skill-tile"><img src="/assets/icons/tailwind.png"   alt="Tailwind"   onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>TW</div>'"><span class="skill-name">Tailwind</span></div>
+          <div class="skill-tile"><img src="/assets/icons/react.png"      alt="React"      onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>RE</div>'"><span class="skill-name">React</span></div>
+          <div class="skill-tile"><img src="/assets/icons/vite.png"       alt="Vite"       onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>VI</div>'"><span class="skill-name">Vite</span></div>
+          <div class="skill-tile"><img src="/assets/icons/flutter.png"    alt="Flutter"    onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>FL</div>'"><span class="skill-name">Flutter</span></div>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <div class="section-label">Backend</div>
+        <div class="skills-grid">
+          <div class="skill-tile"><img src="/assets/icons/nodejs.png" alt="Node.js" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>NO</div>'"><span class="skill-name">Node.js</span></div>
+          <div class="skill-tile"><img src="/assets/icons/python.png" alt="Python"  onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>PY</div>'"><span class="skill-name">Python</span></div>
+          <div class="skill-tile"><img src="/assets/icons/java.png"   alt="Java"    onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>JA</div>'"><span class="skill-name">Java</span></div>
+          <div class="skill-tile"><img src="/assets/icons/flask.png"  alt="Flask"   onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>FL</div>'"><span class="skill-name">Flask</span></div>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <div class="section-label">Databases</div>
+        <div class="skills-grid">
+          <div class="skill-tile"><img src="/assets/icons/mysql.png"      alt="MySQL"      onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>MY</div>'"><span class="skill-name">MySQL</span></div>
+          <div class="skill-tile"><img src="/assets/icons/postgresql.png" alt="PostgreSQL" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>PG</div>'"><span class="skill-name">PostgreSQL</span></div>
+          <div class="skill-tile"><img src="/assets/icons/mongodb.png"    alt="MongoDB"    onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>MG</div>'"><span class="skill-name">MongoDB</span></div>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <div class="section-label">Tools &amp; IDEs</div>
+        <div class="skills-grid">
+          <div class="skill-tile"><img src="/assets/icons/vscode.png"   alt="VS Code" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>VS</div>'"><span class="skill-name">VS Code</span></div>
+          <div class="skill-tile"><img src="/assets/icons/eclipse.png"  alt="Eclipse" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>EC</div>'"><span class="skill-name">Eclipse</span></div>
+          <div class="skill-tile"><img src="/assets/icons/npm.png"      alt="npm"     onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>NP</div>'"><span class="skill-name">npm</span></div>
+          <div class="skill-tile"><img src="/assets/icons/pycharm.png"  alt="PyCharm" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>PC</div>'"><span class="skill-name">PyCharm</span></div>
+          <div class="skill-tile"><img src="/assets/icons/github.png"   alt="GitHub"  onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>GH</div>'"><span class="skill-name">GitHub</span></div>
+          <div class="skill-tile"><img src="/assets/icons/latex.png"    alt="LaTeX"   onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>LX</div>'"><span class="skill-name">LaTeX</span></div>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <div class="section-label">Operating Systems</div>
+        <div class="skills-grid">
+          <div class="skill-tile"><img src="/assets/icons/kali.png"    alt="Kali Linux" onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>KL</div>'"><span class="skill-name">Kali Linux</span></div>
+          <div class="skill-tile"><img src="/assets/icons/windows.png" alt="Windows"    onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>WN</div>'"><span class="skill-name">Windows</span></div>
+          <div class="skill-tile"><img src="/assets/icons/mac.png"     alt="macOS"      onerror="this.outerHTML='<div class=\'skill-tile-fallback\'>MC</div>'"><span class="skill-name">macOS</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== ORBIT SCRIPT (desktop only) ===== -->
     <script>
-      
-(function () {
-  // ── Ellipse dimensions ──────────────────────────────────────────
-  const RX = 500;    // half-width  of the ellipse path (px)
-  const RY = 150;    // half-height of the ellipse path (px)
-  const SPEED = 0.000069; // radians per millisecond  (adjust to taste)
+      (function () {
+        const RX    = 500;
+        const RY    = 150;
+        const SPEED = 0.000069;
 
-  // ── Collect all icon elements ───────────────────────────────────
-  const items = Array.from(document.querySelectorAll('.icon-item'));
-  const total = items.length; // 26
+        const items  = Array.from(document.querySelectorAll('.icon-item'));
+        const total  = items.length;
+        const angles = items.map((_, i) => (i / total) * 2 * Math.PI);
 
-  // Assign each icon a starting angle evenly around the ellipse
-  const angles = items.map((_, i) => (i / total) * 2 * Math.PI);
+        const avatarImg = document.getElementById('avatarImg');
+        if (avatarImg) {
+          avatarImg.onerror = function () {
+            document.getElementById('avatarWrap').innerHTML =
+              '<div class="avatar-fallback">🧑🏻‍💻</div>';
+          };
+        }
 
-  // ── Avatar fallback ─────────────────────────────────────────────
-  const avatarImg = document.getElementById('avatarImg');
-  avatarImg.onerror = function () {
-    document.getElementById('avatarWrap').innerHTML =
-      '<div class="avatar-fallback">🧑🏻‍💻</div>';
-  };
+        items.forEach(item => {
+          const img = item.querySelector('img');
+          if (img) {
+            img.onerror = function () {
+              const label = item.getAttribute('data-label') || '?';
+              const abbr  = label.slice(0, 2).toUpperCase();
+              item.innerHTML = `<span style="color:#fff;font-family:'Poppins',sans-serif;font-size:0.65rem;font-weight:700;">${abbr}</span>`;
+            };
+          }
+        });
 
-  // ── Icon image fallback ─────────────────────────────────────────
-  items.forEach(item => {
-    const img = item.querySelector('img');
-    img.onerror = function () {
-      // Show initials if image missing
-      const label = item.getAttribute('data-label') || '?';
-      const abbr  = label.slice(0, 2).toUpperCase();
-      item.innerHTML =
-        `<span style="color:#fff;font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.02em;">${abbr}</span>`;
-    };
-  });
+        let lastTime = null;
 
-  // ── Animation loop ──────────────────────────────────────────────
-  let lastTime = null;
+        function frame(ts) {
+          if (lastTime === null) lastTime = ts;
+          const dt = ts - lastTime;
+          lastTime = ts;
 
-  function frame(ts) {
-    if (lastTime === null) lastTime = ts;
-    const dt = ts - lastTime;
-    lastTime = ts;
+          angles.forEach((angle, i) => { angles[i] = angle + SPEED * dt; });
 
-    angles.forEach((angle, i) => {
-      angles[i] = angle + SPEED * dt;
-    });
+          items.forEach((el, i) => {
+            const a     = angles[i];
+            const x     = RX * Math.cos(a);
+            const y     = RY * Math.sin(a);
+            const depth = (Math.sin(a) + 1) / 2;
+            const scale   = 0.80 + 0.28 * depth;
+            const opacity = 0.70 + 0.30 * depth;
+            const zIndex  = Math.round(1 + 18 * depth);
 
-    items.forEach((el, i) => {
-      const a = angles[i];
-      const x = RX * Math.cos(a);
-      const y = RY * Math.sin(a);
+            el.style.transform = `translate(calc(-50% + ${x.toFixed(2)}px), calc(-50% + ${y.toFixed(2)}px)) scale(${scale.toFixed(3)})`;
+            el.style.opacity   = opacity.toFixed(2);
+            el.style.zIndex    = zIndex;
+          });
 
-      // Depth: icons at the bottom (sin > 0) are "closer" → scale up slightly
-      const depth = (Math.sin(a) + 1) / 2; // 0 … 1
-      const scale = 0.80 + 0.28 * depth;
-      const opacity = 0.70 + 0.30 * depth;
-      const zIndex  = Math.round(1 + 18 * depth);
+          requestAnimationFrame(frame);
+        }
 
-      el.style.transform = `translate(calc(-50% + ${x.toFixed(2)}px), calc(-50% + ${y.toFixed(2)}px)) scale(${scale.toFixed(3)})`;
-      el.style.opacity   = opacity.toFixed(2);
-      el.style.zIndex    = zIndex;
-    });
-
-    requestAnimationFrame(frame);
-  }
-
-  requestAnimationFrame(frame);
-})();
-
+        requestAnimationFrame(frame);
+      })();
     </script>
-  </body>
 
+  </body>
 </html>
