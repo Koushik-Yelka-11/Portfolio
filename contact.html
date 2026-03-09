@@ -57,7 +57,6 @@
     }
 
     /* ===== NAVIGATION BAR ===== */
-
     .navbar {
       position: fixed;
       top: 0;
@@ -216,6 +215,18 @@
       box-shadow: 0 0 0 4px rgba(144, 144, 144, 0.12);
     }
 
+    /* Validation states */
+    input.invalid,
+    textarea.invalid {
+      border-color: #e05252;
+      background: #fff8f8;
+    }
+
+    input.valid,
+    textarea.valid {
+      border-color: #52b788;
+    }
+
     textarea {
       height: 120px;
     }
@@ -251,7 +262,38 @@
       border-color: var(--yellow);
       color: var(--black);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245,197,24,0.35);
+      box-shadow: 0 8px 24px rgba(161, 157, 157, 0.35);
+    }
+
+    .btn .arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* Status message */
+    #status {
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 50px;
+      display: none;
+      animation: fadeUp 0.3s ease both;
+    }
+
+    #status.success {
+      display: inline-block;
+      background: #d8f3dc;
+      color: #1b4332;
+    }
+
+    #status.error {
+      display: inline-block;
+      background: #ffe0e0;
+      color: #7b1d1d;
     }
 
     .divider-text {
@@ -314,6 +356,11 @@
       }
     }
 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     #personCanvas {
       position: relative;
       z-index: 1;
@@ -327,7 +374,6 @@
 
   <header class="navbar">
     <nav class="nav-links">
-      <!-- <a href="index.html" class="nav-link">Home</a> -->
       <a href="about.html" class="nav-link">About</a>
       <a href="contact.html" class="nav-link active">Contact</a>
       <a href="skills.html" class="nav-link">Skills</a>
@@ -405,25 +451,106 @@
   </div>
 
   <script>
+    /* ── Canvas image ── */
     const canvas = document.getElementById('personCanvas');
-    const ctx = canvas.getContext('2d');
-    const IMAGE_SRC = '/assets/koushik/koushik2.png';
+    const ctx    = canvas.getContext('2d');
 
     const img = new Image();
     img.onload = function () {
-      const W = img.naturalWidth;
-      const H = img.naturalHeight;
-
-      canvas.width = W;
-      canvas.height = H;
+      canvas.width  = img.naturalWidth;
+      canvas.height = img.naturalHeight;
       ctx.drawImage(img, 0, 0);
-
-      const targetW = 580;
-      canvas.style.width = targetW + 'px';
+      canvas.style.width  = '580px';
       canvas.style.height = 'auto';
     };
+    img.src = '/assets/koushik/koushik2.png';
 
-    img.src = IMAGE_SRC;
+    /* ── YOUR email address ── */
+    const YOUR_EMAIL = 'yelkakoushik11@gmail.com'; // ← change to your address
+
+    /* ── Helpers ── */
+    function setFieldState(el, valid) {
+      el.classList.toggle('valid',   valid);
+      el.classList.toggle('invalid', !valid);
+    }
+
+    function showStatus(msg, type) {
+      const s = document.getElementById('status');
+      s.textContent = msg;
+      s.className   = type;           // 'success' | 'error'
+      s.style.display = 'inline-block';
+      setTimeout(() => { s.style.display = 'none'; }, 5000);
+    }
+
+    /* ── Live validation ── */
+    ['name', 'email', 'message'].forEach(id => {
+      document.getElementById(id).addEventListener('blur', function () {
+        const ok = this.value.trim() !== '' &&
+                   (id !== 'email' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value));
+        setFieldState(this, ok);
+      });
+    });
+
+    /* ── Form submit → mailto ── */
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nameEl    = document.getElementById('name');
+      const emailEl   = document.getElementById('email');
+      const messageEl = document.getElementById('message');
+
+      const name    = nameEl.value.trim();
+      const email   = emailEl.value.trim();
+      const message = messageEl.value.trim();
+
+      /* Validate */
+      let valid = true;
+
+      if (!name) {
+        setFieldState(nameEl, false);
+        valid = false;
+      } else {
+        setFieldState(nameEl, true);
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setFieldState(emailEl, false);
+        valid = false;
+      } else {
+        setFieldState(emailEl, true);
+      }
+
+      if (!message) {
+        setFieldState(messageEl, false);
+        valid = false;
+      } else {
+        setFieldState(messageEl, true);
+      }
+
+      if (!valid) {
+        showStatus('Please fill in all fields correctly.', 'error');
+        return;
+      }
+
+      /* Build mailto link */
+      const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+      const body    = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\n${message}`
+      );
+
+      const mailtoLink = `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`;
+
+      /* Open default mail client */
+      window.location.href = mailtoLink;
+
+      /* Feedback + reset */
+      showStatus('Opening your mail client… ✓', 'success');
+      this.reset();
+      ['name', 'email', 'message'].forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.remove('valid', 'invalid');
+      });
+    });
   </script>
 
 </body>
