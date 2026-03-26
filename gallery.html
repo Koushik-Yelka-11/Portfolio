@@ -24,10 +24,11 @@
     }
 
     .experience-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-direction: row;
+}
 
     .experience-item {
       background: #ffffff;
@@ -58,20 +59,31 @@
     <h2>Gallery</h2>
 
     <div class="experience-gallery">
-
+      <div class="experience-item">
+        <img src="assets/experience/e5.png" alt="External experience 1">
+        <p>Ciyaraah Winners🥇 2k26...🏀</p>
+      </div>
+      <div class="experience-item">
+        <img src="assets/experience/e4.png" alt="External experience 1">
+        <p>Ranarangam Runners🥈 2k26...🏀</p>
+      </div>
       <div class="experience-item">
         <img src="assets/experience/e1.png" alt="Tech experience 1">
         <p>NRCM Hackathon 2k25...💻</p>
       </div>
 
       <div class="experience-item">
-        <img src="assets/experience/e2.png" alt="Tech experience 2">
-        <p>Ciyaraah Winner 2k25...🏀</p>
+        <img src="assets/experience/e2.png" alt="External experience 1">
+        <p>Ciyaraah Winners🥇 2k25...🏀</p>
       </div>
 
       <div class="experience-item">
         <img src="assets/experience/e3.png" alt="Tech experience 3">
         <p>Salesforce Webinar...🎤</p>
+      </div>
+      <div class="experience-item">
+        <img src="assets/experience/e0.png" alt="External experience 4">
+        <p>31st NVS National Winners🥇 2023–24...🏀</p>
       </div>
 
     </div>
